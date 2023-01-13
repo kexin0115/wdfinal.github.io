@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet"
+      href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <style>
+      /* 交談窗元件內建 X 關閉鈕的類別名稱 */
+      .ui-dialog-titlebar-close { display:none} /* 設定不顯示關閉鈕 */
+    </style>
+</head>
+<body>
+  <p id="msg"><span id="usrName"></span> 註冊成為有趣桌遊會員！</p>
+  <div id="myDialog" title="註冊會員">
+    E-mail:<input id="usr" type="text"><br>
+    帳號:<input id="pss" type="password"><br>
+    密碼:<input id="usr" type="text"><br>
+    確認密碼:<input id="pss" type="password"><br>
+    名字:<input id="usr" type="text"><br>
+    行動電話:<input id="pss" type="password"><br>
+  </div>
+  <script type="text/javascript">
+    // 建立含帳號名稱的陣列
+    var arrUser = ['foo@flag.com.tw', 'bar@flag.com.tw'];
+    // 建立含密碼文字的陣列
+    var arrPass = ['foo123',          'bar456']; 
+    
+    $('#msg').hide();
+    // 建立交談窗, 並做初始設定
+    $('#myDialog').dialog({autoOpen:false,
+                           draggable:false, 
+                           modal:true,
+                           resizable:false,
+                           buttons: [
+                            {
+                             text: '確認送出',
+                             click: function() {
+                               // 找使用者名稱在 usr 陣列中的索引
+                               var i = arrUser.indexOf($('#usr').val());
+                               
+                               // 比對對應的密碼是否與使用者輸入的相同
+                               if(arrPass[i]==$('#pss').val()){
+                                 $(this).dialog('close');
+                                 $('#usrName').text(arrUser[i]);
+                                 $('#msg').show();
+                               }
+                             } // 登入鈕的按鈕事件處理函式結尾
+                            }, // 登入鈕的物件結尾
+                            {
+                             text: '取消',
+                             click: function() {
+                               window.open('index.html','_self');
+                             }
+                            }
+                           ]   // buttons 屬性值陣列結尾
+                           });
+    
+    $('#myDialog').dialog('open');
+    
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
